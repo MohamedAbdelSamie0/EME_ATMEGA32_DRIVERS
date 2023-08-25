@@ -22,15 +22,18 @@ uint8_t g_TimerCounter_flag = 0;
  * input params: NONE
  * output params: NONE
  */ 
-void Timer_init()
+void Timer_init(Timer0_ConfigType* Timer_config)
 {
-	TIMER0_CTRL_REG = TIMER0_OPERATION_MODE;	/*	normal mode operation with 256 prescaler	*/
 	
-	#if TIMER_MODE == INTERRUPT_MODE
-	TIMERS_IMSK_REG |= (1 << INTERRUPT_BIT);	/*	Enable Timeroverflow interrupt	*/
+	TIMER0_CTRL_REG = TIMER0_OPERATION_MODE | Timer_config->prescaler;	/*	normal mode operation with 256 prescaler	*/
+	
+	#if TIMER_MODE == INTERRUPT_MODE_OVF
+		TIMERS_IMSK_REG |= (1 << INTERRUPT_BIT);	/*	Enable Timeroverflow interrupt	*/
+		TIMER0_CNTR_REG = Timer_config->initial_value;	/*	initial value and start timer	*/
+	#elif	TIMER_MODE == INTERRUPT_MODE_CTC
+		TIMERS_IMSK_REG |= (1 << INTERRUPT_BIT);	/*	Enable Timeroverflow interrupt	*/
+		TIMER0_OCR0_REG = Timer_config->compare_value;
 	#endif
-	
-	TIMER0_CNTR_REG = COUNTER_VALUE;	/*	initial value and start timer	*/
 }
 
 /*
@@ -44,6 +47,7 @@ void Timer_stop()
 	TIMER0_CTRL_REG = 0x00;	/* No clock source; timer stopped	*/
 }
 
+#if TIMER_MODE == INTERRUPT_MODE_OVF
 /*
  * Interrupt Service Routine for Timer0 overflow mode
  *
@@ -73,3 +77,15 @@ ISR(TIMER0_OVF_vect)
 	}
 	SetBit(TIMERS_IF_REG, TIMER0_IF_BIT);	/*	Clear TIMER0 interrupt Flag	*/
 }
+#endif
+
+#if TIMER_MODE == INTERRUPT_MODE_CTC
+ISR(TIMER0_COMP_vect)
+{
+	if(g_TimerCounter < 125)
+	{
+		g_TimerCounter++;
+	}
+	SetBit(TIMERS_IF_REG, (TIMER0_IF_BIT+1));	/*	Clear TIMER0 interrupt Flag	*/
+}
+#endif

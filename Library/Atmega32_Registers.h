@@ -60,5 +60,6 @@
 #define TIMER0_CNTR_REG	*((volatile uint8_t *) 0x52)
 #define TIMERS_IMSK_REG	*((volatile uint8_t *) 0x59)
 #define TIMERS_IF_REG	*((volatile uint8_t *) 0x58)
+#define TIMER0_OCR0_REG	*((volatile uint8_t *) 0x5C)
 
 #endif /* ATMEGA32_REGISTERS_H_ */

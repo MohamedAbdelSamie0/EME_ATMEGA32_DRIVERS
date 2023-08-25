@@ -10,22 +10,33 @@
 extern uint8_t g_watchDogCounter;
 extern uint8_t g_TimerCounter;
 
+Timer0_ConfigType TimerConfiguration;
+
 int main(void)
 {
-	DIO_setPinDirection(DIO_PORTA, DIO_PIN5, PIN_OUTPUT);
+	TimerConfiguration.compare_value = COMPARE_VALUE;
+	//TimerConfiguration->mode = Normal;
+	TimerConfiguration.prescaler = Prescalar_256;
+	
+	DIO_setPinDirection(DIO_PORTB, DIO_PIN3, PIN_OUTPUT);
 	
 	SetBit(SREG, 7);		/* Enable global interrupts	*/
 	
-	LCD_init();
-	LCD_Clear();
+	//LCD_init();
+	//LCD_Clear();
     /* Replace with your application code */
-	Timer_init();
+	Timer_init(&TimerConfiguration);
     while (1)
     {
-		LCD_Clear();
-		LCD_intgerToString(g_TimerCounter);
+		if(g_TimerCounter == 125)
+		{
+			g_TimerCounter = 0;
+			ToggleBit(PORTA, DIO_PIN4);
+		}
+		//LCD_Clear();
+		//LCD_intgerToString(g_TimerCounter);
 		//LCD_moveCursor(1,5);
-		LCD_intgerToString(g_watchDogCounter);
+		//LCD_intgerToString(g_watchDogCounter);
     }
 }
 
