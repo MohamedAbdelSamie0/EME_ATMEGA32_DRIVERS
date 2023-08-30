@@ -13,9 +13,9 @@
 #define TIMER0_IF_BIT				0
 #define TIMER_MODE					INTERRUPT_MODE_CTC
 #define COUNTER_VALUE				6
-#define COMPARE_VALUE				62
+#define COMPARE_VALUE				250
 #define INTERRUPT_BIT				0
-#define TIMER0_OPERATION_MODE		0x98
+#define TIMER0_OPERATION_MODE		0x8
 #define Timer_count_value			10
 #define Watchdog_count_value		6
 

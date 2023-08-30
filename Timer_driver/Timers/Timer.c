@@ -82,9 +82,14 @@ ISR(TIMER0_OVF_vect)
 #if TIMER_MODE == INTERRUPT_MODE_CTC
 ISR(TIMER0_COMP_vect)
 {
-	if(g_TimerCounter < 125)
+	if(g_TimerCounter < 500)
 	{
 		g_TimerCounter++;
+	}
+	else if(g_TimerCounter == 500)
+	{
+		g_TimerCounter = 0;
+		ToggleBit(PORTA, DIO_PIN4);
 	}
 	SetBit(TIMERS_IF_REG, (TIMER0_IF_BIT+1));	/*	Clear TIMER0 interrupt Flag	*/
 }

@@ -18,7 +18,7 @@ int main(void)
 	//TimerConfiguration->mode = Normal;
 	TimerConfiguration.prescaler = Prescalar_256;
 	
-	DIO_setPinDirection(DIO_PORTB, DIO_PIN3, PIN_OUTPUT);
+	DIO_setPinDirection(DIO_PORTA, DIO_PIN4, PIN_OUTPUT);
 	
 	SetBit(SREG, 7);		/* Enable global interrupts	*/
 	
@@ -28,11 +28,7 @@ int main(void)
 	Timer_init(&TimerConfiguration);
     while (1)
     {
-		if(g_TimerCounter == 125)
-		{
-			g_TimerCounter = 0;
-			ToggleBit(PORTA, DIO_PIN4);
-		}
+
 		//LCD_Clear();
 		//LCD_intgerToString(g_TimerCounter);
 		//LCD_moveCursor(1,5);

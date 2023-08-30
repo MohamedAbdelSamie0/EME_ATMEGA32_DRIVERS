@@ -3,31 +3,31 @@ Timer.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000001da  00000000  00000000  00000074  2**1
+  0 .text         000001c2  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000000  00800060  00800060  0000024e  2**0
+  1 .data         00000000  00800060  00800060  00000236  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000004  00800060  00800060  0000024e  2**0
+  2 .bss          00000004  00800060  00800060  00000236  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  0000024e  2**0
+  3 .comment      00000030  00000000  00000000  00000236  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000280  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000268  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000a0  00000000  00000000  000002bc  2**0
+  5 .debug_aranges 000000a0  00000000  00000000  000002a4  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00000a21  00000000  00000000  0000035c  2**0
+  6 .debug_info   00000a14  00000000  00000000  00000344  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000706  00000000  00000000  00000d7d  2**0
+  7 .debug_abbrev 000006f5  00000000  00000000  00000d58  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   000005d8  00000000  00000000  00001483  2**0
+  8 .debug_line   000005c0  00000000  00000000  0000144d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000fc  00000000  00000000  00001a5c  2**2
+  9 .debug_frame  000000fc  00000000  00000000  00001a10  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000490  00000000  00000000  00001b58  2**0
+ 10 .debug_str    000004d7  00000000  00000000  00001b0c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000348  00000000  00000000  00001fe8  2**0
+ 11 .debug_loc    00000348  00000000  00000000  00001fe3  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000070  00000000  00000000  00002330  2**0
+ 12 .debug_ranges 00000070  00000000  00000000  0000232b  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -43,7 +43,7 @@ Disassembly of section .text:
   1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  28:	0c 94 d5 00 	jmp	0x1aa	; 0x1aa <__vector_10>
+  28:	0c 94 cb 00 	jmp	0x196	; 0x196 <__vector_10>
   2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
@@ -77,22 +77,14 @@ Disassembly of section .text:
   6c:	b2 07       	cpc	r27, r18
   6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
   70:	0e 94 ae 00 	call	0x15c	; 0x15c <main>
-  74:	0c 94 eb 00 	jmp	0x1d6	; 0x1d6 <_exit>
+  74:	0c 94 df 00 	jmp	0x1be	; 0x1be <_exit>
 
 00000078 <__bad_interrupt>:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
 0000007c <DIO_setPinDirection>:
-	}
-}
-
-void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
-{
-	if( dir == DIO_PIN_OUTPUT)
   7c:	41 30       	cpi	r20, 0x01	; 1
   7e:	a1 f5       	brne	.+104    	; 0xe8 <DIO_setPinDirection+0x6c>
-	{
-		switch(Port)
   80:	81 30       	cpi	r24, 0x01	; 1
   82:	89 f0       	breq	.+34     	; 0xa6 <DIO_setPinDirection+0x2a>
   84:	28 f0       	brcs	.+10     	; 0x90 <DIO_setPinDirection+0x14>
@@ -101,9 +93,6 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
   8a:	83 30       	cpi	r24, 0x03	; 3
   8c:	11 f1       	breq	.+68     	; 0xd2 <DIO_setPinDirection+0x56>
   8e:	08 95       	ret
-		{
-			case DIO_PORTA:
-			SetBit(DDRA, pin);
   90:	2a b3       	in	r18, 0x1a	; 26
   92:	81 e0       	ldi	r24, 0x01	; 1
   94:	90 e0       	ldi	r25, 0x00	; 0
@@ -114,11 +103,7 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
   9e:	e2 f7       	brpl	.-8      	; 0x98 <DIO_setPinDirection+0x1c>
   a0:	82 2b       	or	r24, r18
   a2:	8a bb       	out	0x1a, r24	; 26
-			break;
   a4:	08 95       	ret
-			
-			case DIO_PORTB:
-			SetBit(DDRB, pin);
   a6:	27 b3       	in	r18, 0x17	; 23
   a8:	81 e0       	ldi	r24, 0x01	; 1
   aa:	90 e0       	ldi	r25, 0x00	; 0
@@ -129,11 +114,7 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
   b4:	e2 f7       	brpl	.-8      	; 0xae <DIO_setPinDirection+0x32>
   b6:	82 2b       	or	r24, r18
   b8:	87 bb       	out	0x17, r24	; 23
-			break;
   ba:	08 95       	ret
-			
-			case DIO_PORTC:
-			SetBit(DDRC, pin);
   bc:	24 b3       	in	r18, 0x14	; 20
   be:	81 e0       	ldi	r24, 0x01	; 1
   c0:	90 e0       	ldi	r25, 0x00	; 0
@@ -144,11 +125,7 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
   ca:	e2 f7       	brpl	.-8      	; 0xc4 <DIO_setPinDirection+0x48>
   cc:	82 2b       	or	r24, r18
   ce:	84 bb       	out	0x14, r24	; 20
-			break;
   d0:	08 95       	ret
-			
-			case DIO_PORTD:
-			SetBit(DDRD, pin);
   d2:	21 b3       	in	r18, 0x11	; 17
   d4:	81 e0       	ldi	r24, 0x01	; 1
   d6:	90 e0       	ldi	r25, 0x00	; 0
@@ -159,18 +136,9 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
   e0:	e2 f7       	brpl	.-8      	; 0xda <DIO_setPinDirection+0x5e>
   e2:	82 2b       	or	r24, r18
   e4:	81 bb       	out	0x11, r24	; 17
-			break;
   e6:	08 95       	ret
-			default:
-			/*do nothing*/
-			break;
-		}
-	}
-	else if(dir == DIO_PIN_INPUT)
   e8:	41 11       	cpse	r20, r1
   ea:	37 c0       	rjmp	.+110    	; 0x15a <DIO_setPinDirection+0xde>
-	{
-		switch(Port)
   ec:	81 30       	cpi	r24, 0x01	; 1
   ee:	91 f0       	breq	.+36     	; 0x114 <DIO_setPinDirection+0x98>
   f0:	28 f0       	brcs	.+10     	; 0xfc <DIO_setPinDirection+0x80>
@@ -179,9 +147,6 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
   f6:	83 30       	cpi	r24, 0x03	; 3
   f8:	29 f1       	breq	.+74     	; 0x144 <DIO_setPinDirection+0xc8>
   fa:	08 95       	ret
-		{
-			case DIO_PORTA:
-			ClearBit(DDRA, pin);
   fc:	2a b3       	in	r18, 0x1a	; 26
   fe:	81 e0       	ldi	r24, 0x01	; 1
  100:	90 e0       	ldi	r25, 0x00	; 0
@@ -193,11 +158,7 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
  10c:	80 95       	com	r24
  10e:	82 23       	and	r24, r18
  110:	8a bb       	out	0x1a, r24	; 26
-			break;
  112:	08 95       	ret
-			
-			case DIO_PORTB:
-			ClearBit(DDRB, pin);
  114:	27 b3       	in	r18, 0x17	; 23
  116:	81 e0       	ldi	r24, 0x01	; 1
  118:	90 e0       	ldi	r25, 0x00	; 0
@@ -209,11 +170,7 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
  124:	80 95       	com	r24
  126:	82 23       	and	r24, r18
  128:	87 bb       	out	0x17, r24	; 23
-			break;
  12a:	08 95       	ret
-			
-			case DIO_PORTC:
-			ClearBit(DDRC, pin);
  12c:	24 b3       	in	r18, 0x14	; 20
  12e:	81 e0       	ldi	r24, 0x01	; 1
  130:	90 e0       	ldi	r25, 0x00	; 0
@@ -225,11 +182,7 @@ void DIO_setPinDirection(uint8_t Port, uint8_t pin, uint8_t dir)
  13c:	80 95       	com	r24
  13e:	82 23       	and	r24, r18
  140:	84 bb       	out	0x14, r24	; 20
-			break;
  142:	08 95       	ret
-			
-			case DIO_PORTD:
-			ClearBit(DDRD, pin);
  144:	21 b3       	in	r18, 0x11	; 17
  146:	81 e0       	ldi	r24, 0x01	; 1
  148:	90 e0       	ldi	r25, 0x00	; 0
@@ -252,17 +205,17 @@ int main(void)
 	TimerConfiguration.compare_value = COMPARE_VALUE;
  15c:	e1 e6       	ldi	r30, 0x61	; 97
  15e:	f0 e0       	ldi	r31, 0x00	; 0
- 160:	8e e3       	ldi	r24, 0x3E	; 62
+ 160:	8a ef       	ldi	r24, 0xFA	; 250
  162:	81 83       	std	Z+1, r24	; 0x01
 	//TimerConfiguration->mode = Normal;
 	TimerConfiguration.prescaler = Prescalar_256;
  164:	84 e0       	ldi	r24, 0x04	; 4
  166:	82 83       	std	Z+2, r24	; 0x02
 	
-	DIO_setPinDirection(DIO_PORTB, DIO_PIN3, PIN_OUTPUT);
+	DIO_setPinDirection(DIO_PORTA, DIO_PIN4, PIN_OUTPUT);
  168:	41 e0       	ldi	r20, 0x01	; 1
- 16a:	63 e0       	ldi	r22, 0x03	; 3
- 16c:	81 e0       	ldi	r24, 0x01	; 1
+ 16a:	64 e0       	ldi	r22, 0x04	; 4
+ 16c:	80 e0       	ldi	r24, 0x00	; 0
  16e:	0e 94 3e 00 	call	0x7c	; 0x7c <DIO_setPinDirection>
 	
 	SetBit(SREG, 7);		/* Enable global interrupts	*/
@@ -276,77 +229,65 @@ int main(void)
 	Timer_init(&TimerConfiguration);
  178:	81 e6       	ldi	r24, 0x61	; 97
  17a:	90 e0       	ldi	r25, 0x00	; 0
- 17c:	0e 94 cb 00 	call	0x196	; 0x196 <Timer_init>
-    while (1)
-    {
-		if(g_TimerCounter == 125)
- 180:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 184:	8d 37       	cpi	r24, 0x7D	; 125
- 186:	e1 f7       	brne	.-8      	; 0x180 <main+0x24>
-		{
-			g_TimerCounter = 0;
- 188:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__DATA_REGION_ORIGIN__>
-			ToggleBit(PORTA, DIO_PIN4);
- 18c:	9b b3       	in	r25, 0x1b	; 27
- 18e:	80 e1       	ldi	r24, 0x10	; 16
- 190:	89 27       	eor	r24, r25
- 192:	8b bb       	out	0x1b, r24	; 27
- 194:	f5 cf       	rjmp	.-22     	; 0x180 <main+0x24>
+ 17c:	0e 94 c1 00 	call	0x182	; 0x182 <Timer_init>
+ 180:	ff cf       	rjmp	.-2      	; 0x180 <main+0x24>
 
-00000196 <Timer_init>:
+00000182 <Timer_init>:
  * input params: NONE
  * output params: NONE
  */ 
 void Timer_stop()
 {
 	TIMER0_CTRL_REG = 0x00;	/* No clock source; timer stopped	*/
- 196:	fc 01       	movw	r30, r24
- 198:	92 81       	ldd	r25, Z+2	; 0x02
- 19a:	98 69       	ori	r25, 0x98	; 152
- 19c:	93 bf       	out	0x33, r25	; 51
- 19e:	99 b7       	in	r25, 0x39	; 57
- 1a0:	91 60       	ori	r25, 0x01	; 1
- 1a2:	99 bf       	out	0x39, r25	; 57
- 1a4:	81 81       	ldd	r24, Z+1	; 0x01
- 1a6:	8c bf       	out	0x3c, r24	; 60
- 1a8:	08 95       	ret
+ 182:	fc 01       	movw	r30, r24
+ 184:	92 81       	ldd	r25, Z+2	; 0x02
+ 186:	98 60       	ori	r25, 0x08	; 8
+ 188:	93 bf       	out	0x33, r25	; 51
+ 18a:	99 b7       	in	r25, 0x39	; 57
+ 18c:	91 60       	ori	r25, 0x01	; 1
+ 18e:	99 bf       	out	0x39, r25	; 57
+ 190:	81 81       	ldd	r24, Z+1	; 0x01
+ 192:	8c bf       	out	0x3c, r24	; 60
+ 194:	08 95       	ret
 
-000001aa <__vector_10>:
+00000196 <__vector_10>:
 }
 #endif
 
 #if TIMER_MODE == INTERRUPT_MODE_CTC
 ISR(TIMER0_COMP_vect)
 {
- 1aa:	1f 92       	push	r1
- 1ac:	0f 92       	push	r0
- 1ae:	0f b6       	in	r0, 0x3f	; 63
- 1b0:	0f 92       	push	r0
- 1b2:	11 24       	eor	r1, r1
- 1b4:	8f 93       	push	r24
-	if(g_TimerCounter < 125)
- 1b6:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
- 1ba:	8d 37       	cpi	r24, 0x7D	; 125
- 1bc:	18 f4       	brcc	.+6      	; 0x1c4 <__vector_10+0x1a>
+ 196:	1f 92       	push	r1
+ 198:	0f 92       	push	r0
+ 19a:	0f b6       	in	r0, 0x3f	; 63
+ 19c:	0f 92       	push	r0
+ 19e:	11 24       	eor	r1, r1
+ 1a0:	8f 93       	push	r24
+	if(g_TimerCounter < 500)
 	{
 		g_TimerCounter++;
- 1be:	8f 5f       	subi	r24, 0xFF	; 255
- 1c0:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1a2:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__DATA_REGION_ORIGIN__>
+ 1a6:	8f 5f       	subi	r24, 0xFF	; 255
+ 1a8:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+	else if(g_TimerCounter == 500)
+	{
+		g_TimerCounter = 0;
+		ToggleBit(PORTA, DIO_PIN4);
 	}
 	SetBit(TIMERS_IF_REG, (TIMER0_IF_BIT+1));	/*	Clear TIMER0 interrupt Flag	*/
- 1c4:	88 b7       	in	r24, 0x38	; 56
- 1c6:	82 60       	ori	r24, 0x02	; 2
- 1c8:	88 bf       	out	0x38, r24	; 56
+ 1ac:	88 b7       	in	r24, 0x38	; 56
+ 1ae:	82 60       	ori	r24, 0x02	; 2
+ 1b0:	88 bf       	out	0x38, r24	; 56
 }
- 1ca:	8f 91       	pop	r24
- 1cc:	0f 90       	pop	r0
- 1ce:	0f be       	out	0x3f, r0	; 63
- 1d0:	0f 90       	pop	r0
- 1d2:	1f 90       	pop	r1
- 1d4:	18 95       	reti
+ 1b2:	8f 91       	pop	r24
+ 1b4:	0f 90       	pop	r0
+ 1b6:	0f be       	out	0x3f, r0	; 63
+ 1b8:	0f 90       	pop	r0
+ 1ba:	1f 90       	pop	r1
+ 1bc:	18 95       	reti
 
-000001d6 <_exit>:
- 1d6:	f8 94       	cli
+000001be <_exit>:
+ 1be:	f8 94       	cli
 
-000001d8 <__stop_program>:
- 1d8:	ff cf       	rjmp	.-2      	; 0x1d8 <__stop_program>
+000001c0 <__stop_program>:
+ 1c0:	ff cf       	rjmp	.-2      	; 0x1c0 <__stop_program>
