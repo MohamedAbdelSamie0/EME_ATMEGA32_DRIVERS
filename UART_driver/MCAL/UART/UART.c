@@ -10,7 +10,7 @@
 #endif
 
 #include "UART.h"
-#include <math.h>	/*	used only to round baud rate calculated value	*/
+#include <avr/interrupt.h>
 
 void (*g_callBackPtr)(uint8_t) = (void*)0;	/*	pointer to function to set ISR for UART	*/
 
@@ -46,6 +46,7 @@ void UART_init(const UART_ConfigType * Config_Ptr)
 				ClearBit(USART_CTRLB_REG, UCSZ2_BIT);
 			}
 			
+		#elif UART_INTERRUPT_MODE == IRQ_DISABLE
 		/************************** UCSRB Description **************************
 		 * RXCIE = 0 Enable USART RX Complete Interrupt Enable
 		 * TXCIE = 0 Enable USART TX Complete Interrupt Enable
@@ -54,18 +55,17 @@ void UART_init(const UART_ConfigType * Config_Ptr)
 		 * RXEN  = 1 Transmitter Enable
 		 * RXB8 & TXB8 are read for the 9th bit in 9-bit data mode
 		***********************************************************************/
-		#elif UART_INTERRUPT_MODE == IRQ_DISABLE
+		/*	UCSZ2_BIT = 1 For 9-bit data mode only, 0 for other	*/
+		if(Config_Ptr->data_bits == Nine_bits)
+		{
+			SetBit(USART_CTRLB_REG, UCSZ2_BIT);
+		}
+		else
+		{
+			//ClearBit(USART_CTRLB_REG, UCSZ2_BIT);
+		}
+		
 			USART_CTRLB_REG |= (1<<RXEN_BIT) | (1<<TXEN_BIT);
-			
-			/*	UCSZ2_BIT = 1 For 9-bit data mode only, 0 for other	*/
-			if(Config_Ptr->data_bits == Nine_bits)
-			{
-				SetBit(USART_CTRLB_REG, UCSZ2_BIT);
-			}
-			else
-			{
-				ClearBit(USART_CTRLB_REG, UCSZ2_BIT);
-			}
 		#endif
 		
 		#if UART_MODE == ASYNCHRONOUS
@@ -79,7 +79,7 @@ void UART_init(const UART_ConfigType * Config_Ptr)
 			 * UCSZ1:0 = 11 For 8-bit data mode
 			 * UCPOL   = 0 Used with the Synchronous operation only
 			 ***********************************************************************/
-			USART_CTRLB_REG |= (1 << URSEL_BIT) | (Config_Ptr->parity << UPM0_BIT) | (Config_Ptr->stop_bit << USBS_BIT);
+			USART_CTRLC_REG |= (1 << URSEL_BIT) | (Config_Ptr->parity << UPM0_BIT) | (Config_Ptr->stop_bit << USBS_BIT);
 			/*	UCSZ1:UCSZ0 = 11 For 9-bit AND 8-bit data mode only 0 for others	*/
 			if(Config_Ptr->data_bits == Nine_bits)
 			{
@@ -88,7 +88,7 @@ void UART_init(const UART_ConfigType * Config_Ptr)
 			}
 			else
 			{
-				USART_CTRLB_REG |= (Config_Ptr->data_bits << UCSZ0_BIT);
+				USART_CTRLC_REG |= (Config_Ptr->data_bits << UCSZ0_BIT);
 			}
 		#endif
 		
@@ -102,13 +102,13 @@ void UART_init(const UART_ConfigType * Config_Ptr)
  * Description :
  * Function to send a byte to another UART device.
  */
-void UART_sendByte(const uint8_t data)
+void UART_sendByte(uint8_t data)
 {
 	/*
 	 * UDRE flag is set when the TX buffer (UDR) is empty and ready for
 	 * transmitting a new byte so wait until this flag is set to one
 	 */
-	while(BIT_IS_CLEAR(USART_CTRLA_REG,UDRE_BIT));
+	while(GetBit(USART_CTRLA_REG,UDRE_BIT) == 0 );
 
 	/*
 	 * Put the required data in the UDR register and it also clear the UDRE flag as
@@ -137,7 +137,7 @@ uint8_t UART_recieveByte(void)
  * Description :
  * Send the required string through UART to the other UART device.
  */
-void UART_sendString(const uint8_t *Str)
+void UART_sendString(uint8_t *Str)
 {
 	uint8_t i = 0;
 
@@ -165,8 +165,8 @@ void UART_receiveString(uint8_t *Str)
 	do 
 	{
 		*Str = UART_recieveByte();
-	} while ((*(Str-1) != ('\r' || '\n')));
-	*(Str -1) = '\0';
+	} while ((*(Str - 1) != ('\r' || '\n')));
+	*(Str - 1) = '\0';
 
 /*	ANOTHER IMPLEMENTATION	
 	 Receive the first byte 
@@ -229,27 +229,29 @@ void UART_disableRX_IE(void)
  * Set baud rate of USART
  * Re-entrance: re-entrant
  */
-void UART_setBaudRate(uint16_t baudrate)
+void UART_setBaudRate(uint32_t baudrate)
 {
-	uint16_t ubrr = 0;
 	
+	uint32_t BR = 16000000/baudrate ;
 	/*	in asynchronous mode double transmission speed is used	*/
 	#if UART_MODE == ASYNCHRONOUS
-		ubrr = ( F_CPU / (8 * baudrate) ) - 1;
+		BR /= 8;
 	#else
-		ubrr = (F_CPU / (16 * baudrate) - 1);
+		BR /= 16;
 	#endif
+	BR -= 1 ;
 	
-	ubrr = round(ubrr);	/* round the value to get coorect integer	*/
 	
-	if(ubrr < 255)
+	//ubrr = (uint16_t)(ubrr);	/* round the value to get correct integer	*/
+	
+	if(BR < 255)
 	{
-		USART_BRL_REG = (uint8_t)(ubrr);
+		USART_BRL_REG = (uint8_t)(BR);
 	}
 	else
 	{
-		USART_BRH_REG = (uint8_t)(ubrr);
-		USART_BRL_REG = 0x0F & (uint8_t)(ubrr >> 8);
+		USART_BRH_REG = (uint8_t)(BR);
+		USART_BRL_REG = 0x0F & ((uint8_t)BR >> 8);
 	}
 }
 

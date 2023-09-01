@@ -42,6 +42,7 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../main.c \
+../MCAL/UART/Global_interrupt.c \
 ../MCAL/UART/UART.c
 
 
@@ -53,18 +54,22 @@ ASM_SRCS +=
 
 OBJS +=  \
 main.o \
+MCAL/UART/Global_interrupt.o \
 MCAL/UART/UART.o
 
 OBJS_AS_ARGS +=  \
 main.o \
+MCAL/UART/Global_interrupt.o \
 MCAL/UART/UART.o
 
 C_DEPS +=  \
 main.d \
+MCAL/UART/Global_interrupt.d \
 MCAL/UART/UART.d
 
 C_DEPS_AS_ARGS +=  \
 main.d \
+MCAL/UART/Global_interrupt.d \
 MCAL/UART/UART.d
 
 OUTPUT_FILE_PATH +=UART.elf
@@ -82,6 +87,13 @@ LINKER_SCRIPT_DEP+=
 
 # AVR32/GNU C Compiler
 ./main.o: .././main.c
+	@echo Building file: $<
+	@echo Invoking: AVR/GNU C Compiler : 5.4.0
+	$(QUOTE)D:\EME_Embedded_EUI\IDEs\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\EME_Embedded_EUI\IDEs\Atmel\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../MCAL/UART/inc" -I"../Library"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "D:\EME_Embedded_EUI\IDEs\Atmel\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+MCAL/UART/Global_interrupt.o: ../MCAL/UART/Global_interrupt.c
 	@echo Building file: $<
 	@echo Invoking: AVR/GNU C Compiler : 5.4.0
 	$(QUOTE)D:\EME_Embedded_EUI\IDEs\Atmel\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-gcc.exe$(QUOTE)  -x c -funsigned-char -funsigned-bitfields -DDEBUG  -I"D:\EME_Embedded_EUI\IDEs\Atmel\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"../MCAL/UART/inc" -I"../Library"  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega32 -B "D:\EME_Embedded_EUI\IDEs\Atmel\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega32" -c -std=gnu99 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

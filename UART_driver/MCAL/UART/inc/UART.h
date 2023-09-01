@@ -28,7 +28,7 @@ void UART_init(const UART_ConfigType * Config_Ptr);
  * Description :
  * Function to send a byte to another UART device.
  */
-void UART_sendByte(const uint8_t data);
+void UART_sendByte(uint8_t data);
 
 /*
  * Description :
@@ -40,7 +40,7 @@ uint8_t UART_recieveByte(void);
  * Description :
  * Send the required string through UART to the other UART device.
  */
-void UART_sendString(const uint8_t *Str);
+void UART_sendString(uint8_t *Str);
 
 /*
  * Description :
@@ -81,7 +81,7 @@ void UART_disableRX_IE(void);
  * Set baud rate of USART
  * Re-entrance: re-entrant
  */
-void UART_setBaudRate(uint16_t baudrate);
+void UART_setBaudRate(uint32_t baudrate);
 
 /*
  * Description :

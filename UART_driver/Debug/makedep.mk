@@ -4,5 +4,7 @@
 
 main.c
 
+MCAL\UART\Global_interrupt.c
+
 MCAL\UART\UART.c
 

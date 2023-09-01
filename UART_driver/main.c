@@ -6,7 +6,9 @@
  */ 
 
 #include "UART.h"
-#include "Atmega32_Registers.h"
+#include "Global_interrupt.h"
+//#include "Atmega32_Registers.h"
+
 volatile uint8_t buffer[10];
 volatile uint8_t uart_flag = 0;
 
@@ -30,7 +32,8 @@ void uart_callback(uint8_t data)
 UART_ConfigType USART_CONFIGURATION;
 int main(void)
 {
-	uint8_t *str_test = 0;
+	//SetBit(DDRD, 1);
+	//uint8_t *str_test = 0;
 	USART_CONFIGURATION.baud_rate = 9600;
 	USART_CONFIGURATION.data_bits = Eight_bits;
 	USART_CONFIGURATION.parity = Disable;
@@ -40,13 +43,14 @@ int main(void)
 	
 	USART_setCallback(uart_callback);
 	
-	SetBit(SREG, 7);	/* enable global interrupts	*/
+	//Global_interrupts_enable();	/* enable global interrupts	*/
     /* Replace with your application code */
+	
     while (1) 
     {
-		UART_receiveString(str_test);
-		
-		UART_sendString(str_test);
+		UART_sendByte('a');
+		UART_sendByte('b');
+		//UART_sendString((uint8_t*)"test");
     }
 	return 0;
 }

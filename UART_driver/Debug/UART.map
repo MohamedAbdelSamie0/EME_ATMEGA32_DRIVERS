@@ -1,19 +1,5 @@
 Archive member included to satisfy reference by file (symbol)
 
-d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                              MCAL/UART/UART.o (__fixunssfsi)
-d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                              MCAL/UART/UART.o (__floatunsisf)
-d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                              d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o) (__fp_splitA)
-d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                              d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o) (__fp_zero)
-d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(round.o)
-                              MCAL/UART/UART.o (round)
-d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mintl.o)
-                              d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(round.o) (__fp_mintl)
-d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mpack.o)
-                              d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(round.o) (__fp_mpack)
 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
                               MCAL/UART/UART.o (__udivmodsi4)
 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
@@ -35,9 +21,31 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
+ .text          0x00000000        0x0 MCAL/UART/Global_interrupt.o
+ .data          0x00000000        0x0 MCAL/UART/Global_interrupt.o
+ .bss           0x00000000        0x0 MCAL/UART/Global_interrupt.o
+ .text.Global_interrupts_enable
+                0x00000000        0x8 MCAL/UART/Global_interrupt.o
+ .text.Global_interrupts_disable
+                0x00000000        0x8 MCAL/UART/Global_interrupt.o
+ .debug_info    0x00000000       0x99 MCAL/UART/Global_interrupt.o
+ .debug_abbrev  0x00000000       0x51 MCAL/UART/Global_interrupt.o
+ .debug_aranges
+                0x00000000       0x28 MCAL/UART/Global_interrupt.o
+ .debug_ranges  0x00000000       0x18 MCAL/UART/Global_interrupt.o
+ .debug_line    0x00000000       0xc6 MCAL/UART/Global_interrupt.o
+ .debug_str     0x00000000      0x1b3 MCAL/UART/Global_interrupt.o
+ .comment       0x00000000       0x31 MCAL/UART/Global_interrupt.o
+ .debug_frame   0x00000000       0x34 MCAL/UART/Global_interrupt.o
  .text          0x00000000        0x0 MCAL/UART/UART.o
  .data          0x00000000        0x0 MCAL/UART/UART.o
  .bss           0x00000000        0x0 MCAL/UART/UART.o
+ .text.UART_recieveByte
+                0x00000000        0x8 MCAL/UART/UART.o
+ .text.UART_sendString
+                0x00000000       0x26 MCAL/UART/UART.o
+ .text.UART_receiveString
+                0x00000000       0x1e MCAL/UART/UART.o
  .text.UART_enableTX_IE
                 0x00000000        0x8 MCAL/UART/UART.o
  .text.UART_disableTX_IE
@@ -46,27 +54,6 @@ Discarded input sections
                 0x00000000        0x8 MCAL/UART/UART.o
  .text.UART_disableRX_IE
                 0x00000000        0x8 MCAL/UART/UART.o
- .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
- .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
- .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
- .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
- .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
- .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
- .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
- .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
- .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
- .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
- .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
- .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
- .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(round.o)
- .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(round.o)
- .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(round.o)
- .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mintl.o)
- .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mintl.o)
- .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mintl.o)
- .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mpack.o)
- .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mpack.o)
- .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mpack.o)
  .text          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
  .data          0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
  .bss           0x00000000        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
@@ -130,6 +117,7 @@ Linker script and memory map
 
 LOAD D:/EME_Embedded_EUI/IDEs/Atmel/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
 LOAD main.o
+LOAD MCAL/UART/Global_interrupt.o
 LOAD MCAL/UART/UART.o
 START GROUP
 LOAD d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a
@@ -240,7 +228,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x4ac
+.text           0x00000000      0x284
  *(.vectors)
  .vectors       0x00000000       0x54 D:/EME_Embedded_EUI/IDEs/Atmel/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
                 0x00000000                __vector_default
@@ -322,65 +310,31 @@ END GROUP
  .text.uart_callback
                 0x0000007c       0x74 main.o
                 0x0000007c                uart_callback
- .text.main     0x000000f0       0x42 main.o
+ .text.main     0x000000f0       0x38 main.o
                 0x000000f0                main
  .text.UART_sendByte
-                0x00000132        0x8 MCAL/UART/UART.o
-                0x00000132                UART_sendByte
- .text.UART_recieveByte
-                0x0000013a        0x8 MCAL/UART/UART.o
-                0x0000013a                UART_recieveByte
- .text.UART_sendString
-                0x00000142       0x26 MCAL/UART/UART.o
-                0x00000142                UART_sendString
- .text.UART_receiveString
-                0x00000168       0x1e MCAL/UART/UART.o
-                0x00000168                UART_receiveString
+                0x00000128        0x8 MCAL/UART/UART.o
+                0x00000128                UART_sendByte
  .text.UART_setBaudRate
-                0x00000186       0x48 MCAL/UART/UART.o
-                0x00000186                UART_setBaudRate
+                0x00000130       0x3e MCAL/UART/UART.o
+                0x00000130                UART_setBaudRate
  .text.UART_init
-                0x000001ce       0x74 MCAL/UART/UART.o
-                0x000001ce                UART_init
+                0x0000016e       0x70 MCAL/UART/UART.o
+                0x0000016e                UART_init
  .text.USART_setCallback
-                0x00000242        0xa MCAL/UART/UART.o
-                0x00000242                USART_setCallback
+                0x000001de        0xa MCAL/UART/UART.o
+                0x000001de                USART_setCallback
  .text.__vector_13
-                0x0000024c       0x54 MCAL/UART/UART.o
-                0x0000024c                __vector_13
- .text.avr-libc.fplib
-                0x000002a0       0x5e d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x000002a0                __fixunssfsi
- .text.avr-libc.fplib
-                0x000002fe       0x7a d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x000002fe                __floatunsisf
-                0x00000302                __floatsisf
- .text.avr-libc.fplib
-                0x00000378       0x44 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x00000378                __fp_split3
-                0x00000388                __fp_splitA
- .text.avr-libc.fplib
-                0x000003bc        0xe d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x000003bc                __fp_zero
-                0x000003be                __fp_szero
- .text.avr-libc.fplib
-                0x000003ca       0x48 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(round.o)
-                0x000003ca                round
- .text.avr-libc.fplib
-                0x00000412       0x36 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mintl.o)
-                0x00000412                __fp_mintl
- .text.avr-libc.fplib
-                0x00000448       0x1c d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_mpack.o)
-                0x00000448                __fp_mpack
-                0x0000044c                __fp_mpack_finite
+                0x000001e8       0x54 MCAL/UART/UART.o
+                0x000001e8                __vector_13
  .text.libgcc.div
-                0x00000464       0x44 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000464                __udivmodsi4
-                0x000004a8                . = ALIGN (0x2)
+                0x0000023c       0x44 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000023c                __udivmodsi4
+                0x00000280                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000004a8        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x000004a8                _exit
-                0x000004a8                exit
+ .fini9         0x00000280        0x0 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000280                _exit
+                0x00000280                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -399,11 +353,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000004a8        0x4 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000280        0x4 d:/eme_embedded_eui/ides/atmel/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000004ac                _etext = .
+                0x00000284                _etext = .
 
-.data           0x00800060        0x0 load address 0x000004ac
+.data           0x00800060        0x0 load address 0x00000284
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -419,7 +373,7 @@ END GROUP
                 0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.buffer_idx.1677
+ .bss.buffer_idx.1681
                 0x00800060        0x4 main.o
  .bss.uart_flag
                 0x00800064        0x1 main.o
@@ -432,8 +386,8 @@ END GROUP
                 0x00800067                USART_CONFIGURATION
                 0x0080006e                buffer
                 0x00800078                PROVIDE (__bss_end, .)
-                0x000004ac                __data_load_start = LOADADDR (.data)
-                0x000004ac                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000284                __data_load_start = LOADADDR (.data)
+                0x00000284                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800078        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
@@ -515,41 +469,41 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xbcc
+.debug_info     0x00000000      0xb77
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x4e6 D:/EME_Embedded_EUI/IDEs/Atmel/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_info    0x000004e6      0x2b5 main.o
- .debug_info    0x0000079b      0x431 MCAL/UART/UART.o
+ .debug_info    0x000004e6      0x28e main.o
+ .debug_info    0x00000774      0x403 MCAL/UART/UART.o
 
-.debug_abbrev   0x00000000      0x7a6
+.debug_abbrev   0x00000000      0x753
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x4a3 D:/EME_Embedded_EUI/IDEs/Atmel/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_abbrev  0x000004a3      0x13c main.o
- .debug_abbrev  0x000005df      0x1c7 MCAL/UART/UART.o
+ .debug_abbrev  0x000004a3      0x124 main.o
+ .debug_abbrev  0x000005c7      0x18c MCAL/UART/UART.o
 
-.debug_line     0x00000000      0x4ee
+.debug_line     0x00000000      0x4de
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x116 D:/EME_Embedded_EUI/IDEs/Atmel/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_line    0x00000116      0x157 main.o
- .debug_line    0x0000026d      0x281 MCAL/UART/UART.o
+ .debug_line    0x00000116      0x151 main.o
+ .debug_line    0x00000267      0x277 MCAL/UART/UART.o
 
 .debug_frame    0x00000000      0x16c
  *(.debug_frame)
  .debug_frame   0x00000000       0x34 main.o
  .debug_frame   0x00000034      0x138 MCAL/UART/UART.o
 
-.debug_str      0x00000000      0x5f4
+.debug_str      0x00000000      0x5d7
  *(.debug_str)
  .debug_str     0x00000000      0x196 D:/EME_Embedded_EUI/IDEs/Atmel/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega32/avr5/crtatmega32.o
- .debug_str     0x00000196      0x2b9 main.o
-                                0x2ed (size before relaxing)
- .debug_str     0x0000044f      0x1a5 MCAL/UART/UART.o
-                                0x431 (size before relaxing)
+ .debug_str     0x00000196      0x29b main.o
+                                0x2cf (size before relaxing)
+ .debug_str     0x00000431      0x1a6 MCAL/UART/UART.o
+                                0x41d (size before relaxing)
 
-.debug_loc      0x00000000      0x2b9
+.debug_loc      0x00000000      0x2d5
  *(.debug_loc)
  .debug_loc     0x00000000       0x69 main.o
- .debug_loc     0x00000069      0x250 MCAL/UART/UART.o
+ .debug_loc     0x00000069      0x26c MCAL/UART/UART.o
 
 .debug_macinfo
  *(.debug_macinfo)

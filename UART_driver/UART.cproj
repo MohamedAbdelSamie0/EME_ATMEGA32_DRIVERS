@@ -131,6 +131,12 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="MCAL\UART\Global_interrupt.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\UART\inc\Global_interrupt.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MCAL\UART\inc\UART.h">
       <SubType>compile</SubType>
     </Compile>
